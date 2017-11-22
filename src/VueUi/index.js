@@ -3,8 +3,8 @@ import VPullDownRefresh from './components/pull-down-refresh'
 import VIcon from './components/icon'
 import VButton from './components/button'
 import VDialog from './components/dialog'
-import LoadingBar from './components/loading-bar'
-import Message from './components/message'
+import VLoadingBar from './components/loading-bar'
+import VMessage from './components/message'
 
 import './styles/index.less'
 
@@ -21,9 +21,9 @@ const install = function(Vue){
   }
 
   Vue.prototype.$dialog = VDialog.showDialog
-  Vue.prototype.$loadingBar = LoadingBar
-  Vue.prototype.$message = Message
-  Vue.prototype.$loadingBarConfig = LoadingBar.config
+  Vue.prototype.$loadingBar = VLoadingBar
+  Vue.prototype.$message = VMessage
+  Vue.prototype.$loadingBarConfig = VLoadingBar.config
 }
 
 export const API = {
