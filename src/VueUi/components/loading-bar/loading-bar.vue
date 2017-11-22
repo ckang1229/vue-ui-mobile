@@ -44,7 +44,7 @@
 </script>
 
 <style lang="less" type="text/less">
-  @import "../../styles/index";
+  @import "../../styles/variable";
 
   .v-loading-bar{
     position: fixed;

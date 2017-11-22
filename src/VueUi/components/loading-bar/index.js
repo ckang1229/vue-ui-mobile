@@ -108,6 +108,7 @@ export default {
     const instance = getLoadingBarInstance()
     LoadingBarInstance  = null;
 
+    clearTimer();
     instance.destroy()
   }
 }

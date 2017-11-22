@@ -24,13 +24,13 @@
           <v-icon type="ios-information-outline" size="0.64" color="#8B78E2"></v-icon>
           <div class="com-name">Message</div>
         </div>
-        <div class="item" @click="$router.push('/pull-down-refresh')">
-          <v-icon type="ios-more" size="0.64" color="#FF685E"></v-icon>
-          <div class="com-name">PullRefresh</div>
+        <div class="item" @click="$router.push('/radio')">
+          <v-icon type="ios-circle-filled" size="0.64" color="#FF8D20"></v-icon>
+          <div class="com-name">Radio</div>
         </div>
-        <div class="item" @click="$router.push('/pull-down-refresh')">
-          <v-icon type="ios-more" size="0.64" color="#FF685E"></v-icon>
-          <div class="com-name">PullRefresh</div>
+        <div class="item" @click="$router.push('/checkbox')">
+          <v-icon type="android-checkbox-outline" size="0.64" color="#FF685E"></v-icon>
+          <div class="com-name">Checkbox</div>
         </div>
         <div class="item" @click="$router.push('/pull-down-refresh')">
           <v-icon type="ios-more" size="0.64" color="#FF685E"></v-icon>

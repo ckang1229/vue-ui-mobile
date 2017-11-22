@@ -68,7 +68,8 @@
 </script>
 
 <style type="text/less" lang="less">
-  @import "../../styles/index";
+  @import "../../styles/variable";
+  @import "../../styles/mixin";
 
   .v-dialog{
     position: absolute;

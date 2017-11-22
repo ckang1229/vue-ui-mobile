@@ -5,6 +5,8 @@ import VButton from './components/button'
 import VDialog from './components/dialog'
 import VLoadingBar from './components/loading-bar'
 import VMessage from './components/message'
+import VRadio from './components/radio'
+import VCheckbox from './components/checkbox'
 
 import './styles/index.less'
 
@@ -12,7 +14,9 @@ const components = {
   VScroll,
   VIcon,
   VButton,
-  VPullDownRefresh
+  VPullDownRefresh,
+  VRadio,
+  VCheckbox
 }
 
 const install = function(Vue){

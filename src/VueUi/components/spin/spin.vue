@@ -30,7 +30,7 @@
 </script>
 
 <style type="text/less" lang="less">
-  @import "../../styles/index";
+  @import "../../styles/variable";
 
   .v-spin{
     display: flex;

@@ -8,6 +8,8 @@ const DialogView = () => import('../pages/Dialog')
 const LoadingBarView = () => import('../pages/LoadingBar')
 const PullDownRefreshView = () => import('../pages/PullDownRefresh')
 const MessageView = () => import('../pages/Message')
+const RadioView = () => import('../pages/Radio')
+const CheckboxView = () => import('../pages/Checkbox')
 
 Vue.use(Router)
 
@@ -42,6 +44,16 @@ export default new Router({
       path: '/message',
       name: 'Message',
       component: MessageView
+    },
+    {
+      path: '/radio',
+      name: 'Radio',
+      component: RadioView
+    },
+    {
+      path: '/checkbox',
+      name: 'Checkbox',
+      component: CheckboxView
     }
   ]
 })

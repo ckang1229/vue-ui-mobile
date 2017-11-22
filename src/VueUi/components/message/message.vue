@@ -54,7 +54,7 @@
 </script>
 
 <style type="text/less" lang="less">
-  @import "../../styles/index";
+  @import "../../styles/variable";
 
   .v-message{
     padding: 6/@RootFontSize 12/@RootFontSize;
