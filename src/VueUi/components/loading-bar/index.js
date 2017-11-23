@@ -7,7 +7,8 @@ let spin = false;
 
 let widthDuration = 300;
 const opacityDuration = 200;
-let timmer;
+let timmer, startTime, finishTime;
+let compelete = true;
 let LoadingBarInstance;
 
 function getLoadingBarInstance(){
@@ -26,28 +27,51 @@ function update(conf){
   instance.update(conf)
 }
 
-function finish(){
+async function finish(){
   clearTimer()
 
   update({
     current: 100
   })
 
-  setTimeout(() => {
-    update({
-      show: false
-    })
-    setTimeout(() => {
-      update({
-        current: 0
-      })
-    }, opacityDuration)
-  }, widthDuration)
+  await widthTransition()
+
+  update({
+    show: false
+  })
+
+  await opacityTransition()
+
+  update({
+    current: 0
+  })
+
+  await widthTransition()
+
+  compelete = true
 }
 
 function clearTimer(){
   timmer && clearInterval(timmer);
   timmer = null;
+}
+
+//模拟opacity变化所需要的等待时间
+function opacityTransition(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, opacityDuration)
+  })
+}
+
+//模拟loading-bar 宽度变化所需要的等待时间
+function widthTransition(){
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, widthDuration)
+  })
 }
 
 function animation(current, waitTime){
@@ -56,25 +80,55 @@ function animation(current, waitTime){
       current
     })
 
-    timmer = setTimeout(() => {
-      resolve()
-    }, widthDuration + waitTime)
+    timmer = setTimeout(resolve, widthDuration + waitTime)
   })
 }
 
+function config({color: newColor, height: newHeight, spin: newSpin}){
+  if(newColor){
+    color = newColor;
+  }
+
+  if(newHeight){
+    height = newHeight;
+  }
+
+  if(newSpin){
+    spin = newSpin;
+  }
+}
+
+function destroy(){
+  if(!LoadingBarInstance) return
+
+  const instance = getLoadingBarInstance()
+  LoadingBarInstance  = null;
+
+  clearTimer();
+  instance.destroy()
+}
+
 export default {
-  start(){
-    if(timmer) return;
+  async start(options){
+    if(!compelete) return;
+
+    //如果有配置项 则需要重新创建实例
+    if(options){
+      config(options)
+      destroy()
+    }
+
+    startTime = new Date();
 
     update({
       show: true
     })
 
-    timmer = setTimeout(async () => {
-      await animation(20, 1200)
+    await opacityTransition();
 
-      await animation(80, 0)
-    }, opacityDuration)
+    await animation(20, 1000)
+
+    await animation(80, 0)
   },
   update(conf){
     if(conf.current == 100){
@@ -86,29 +140,16 @@ export default {
       })
     }
   },
-  finish(){
-    finish()
-  },
-  config({color: newColor, height: newHeight, spin: newSpin}){
-    if(newColor){
-      color = newColor;
-    }
+  async finish(){
+    finishTime = new Date()
 
-    if(newHeight){
-      height = newHeight;
-    }
-
-    if(newSpin){
-      spin = newSpin;
+    if(finishTime - startTime < opacityDuration){
+      await opacityTransition()
+      finish()
+    }else{
+      finish()
     }
   },
-  destroy(){
-    if(!LoadingBarInstance) return
-
-    const instance = getLoadingBarInstance()
-    LoadingBarInstance  = null;
-
-    clearTimer();
-    instance.destroy()
-  }
+  config,
+  destroy
 }

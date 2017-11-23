@@ -1,9 +1,8 @@
 <template>
-  <div class="v-checkbox">
+  <div class="v-checkbox" @click="toggleCheck">
     <span
       class="v-input-checkbox"
       :class="{checked, disabled}"
-      @click="toggleCheck"
     >
       <icon
         type="checkmark"
@@ -14,7 +13,6 @@
     </span>
     <span
       class="v-checkbox-name"
-      @click="toggleCheck"
     >
       <slot></slot>
     </span>
@@ -72,6 +70,8 @@
 
 <style lang="less" type="text/less">
   @import "../../styles/variable";
+  @CheckboxDisabled: #f3f3f3;
+  @CheckboxInnerDisabled: #ccc;
 
   .v-checkbox{
     display: inline-block;

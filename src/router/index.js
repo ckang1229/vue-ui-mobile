@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { VLoadingBar } from '../VueUi/components'
 
 import Home from '../pages/Home'
 
@@ -10,10 +11,11 @@ const PullDownRefreshView = () => import('../pages/PullDownRefresh')
 const MessageView = () => import('../pages/Message')
 const RadioView = () => import('../pages/Radio')
 const CheckboxView = () => import('../pages/Checkbox')
+const SwitchView = () => import('../pages/Switch')
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -54,6 +56,23 @@ export default new Router({
       path: '/checkbox',
       name: 'Checkbox',
       component: CheckboxView
+    },
+    {
+      path: '/switch',
+      name: 'Switch',
+      component: SwitchView
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  VLoadingBar.start()
+
+  next()
+})
+
+router.afterEach(() => {
+  VLoadingBar.finish()
+})
+
+export default router

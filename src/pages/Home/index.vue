@@ -32,9 +32,9 @@
           <v-icon type="android-checkbox-outline" size="0.64" color="#FF685E"></v-icon>
           <div class="com-name">Checkbox</div>
         </div>
-        <div class="item" @click="$router.push('/pull-down-refresh')">
-          <v-icon type="ios-more" size="0.64" color="#FF685E"></v-icon>
-          <div class="com-name">PullRefresh</div>
+        <div class="item" @click="$router.push('/switch')">
+          <v-icon type="toggle" size="0.64" color="#FF8D20"></v-icon>
+          <div class="com-name">Switch</div>
         </div>
       </div>
     </v-scroll>

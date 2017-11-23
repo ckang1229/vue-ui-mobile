@@ -1,12 +1,26 @@
 <template>
   <component-view>
     <div class="scroll">
-      <v-button type="primary" @click="$loadingBar.start()">开始</v-button>
-      <v-button type="primary" @click="$loadingBar.update({current: 40})">update 40</v-button>
-      <v-button type="primary" @click="$loadingBar.finish()">结束</v-button>
-      <v-button type="primary" @click="updateColor('#ff9900')">自定义颜色 #ff9900</v-button>
-      <v-button type="primary" @click="updateHeight('3px')">自定义高度 3px</v-button>
-      <v-button type="primary" @click="withSpin()">带有spin</v-button>
+      <div class="config">
+        <span class="config-name">高度</span>
+        <v-radio v-model="config.height" val="2px">2px</v-radio>
+        <v-radio v-model="config.height" val="3px">3px</v-radio>
+        <v-radio v-model="config.height" val="4px">4px</v-radio>
+      </div>
+      <div class="config">
+        <span class="config-name">颜色</span>
+        <v-radio v-model="config.color" val="#3399ff">#3399ff</v-radio>
+        <v-radio v-model="config.color" val="#ff9900">#ff9900</v-radio>
+        <v-radio v-model="config.color" val="#00cc66">#00cc66</v-radio>
+      </div>
+      <div class="config">
+        <span class="config-name">spin</span>
+        <v-switch v-model="config.spin"></v-switch>
+      </div>
+      <div class="config">
+        <v-button type="primary" @click="start">开始</v-button>
+        <v-button type="error" @click="end">结束</v-button>
+      </div>
     </div>
   </component-view>
 </template>
@@ -15,27 +29,21 @@
   import ComponentView from '../../components/ComponentView.vue'
 
   export default {
+    data(){
+      return {
+        config: {
+          spin: false,
+          color: '#3399ff',
+          height: '2px'
+        }
+      }
+    },
     methods: {
-      updateColor(color){
-        this.$loadingBar.destroy()
-
-        this.$loadingBarConfig({
-          color
-        })
+      start(){
+        this.$loadingBar.start(this.config)
       },
-      updateHeight(height){
-        this.$loadingBar.destroy()
-
-        this.$loadingBarConfig({
-          height
-        })
-      },
-      withSpin(){
-        this.$loadingBar.destroy()
-
-        this.$loadingBarConfig({
-          spin: true
-        })
+      end(){
+        this.$loadingBar.finish()
       }
     },
     components: {

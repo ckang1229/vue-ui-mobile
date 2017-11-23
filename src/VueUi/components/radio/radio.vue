@@ -1,18 +1,19 @@
 <template>
-  <div class="v-radio">
+  <div class="v-radio" @click="valueChange">
     <span
       class="v-input-radio"
       :class="{checked, disabled}"
-      @click="valueChange"
     >
-      <div
-        class="v-input-radio-inner"
-        :class="{disabled}"
-      ></div>
+      <transition name="v-radio-ani">
+        <div
+          class="v-input-radio-inner"
+          :class="{disabled}"
+          v-show="checked"
+        ></div>
+      </transition>
     </span>
     <span
       class="v-radio-name"
-      @click="valueChange"
     >
       <slot></slot>
     </span>
@@ -24,11 +25,11 @@
     props: {
       value: {
         type: null,
-        default: undefined
+        default: ''
       },
       val: {
         type: null,
-        default: null
+        default: ''
       },
       disabled: {
         type: Boolean,
@@ -52,6 +53,8 @@
 
 <style type="text/less" lang="less">
   @import "../../styles/variable";
+  @RadioDisabled: #f3f3f3;
+  @RadioInnerDisabled: #ccc;
 
   .v-radio{
     display: inline-block;
@@ -70,10 +73,6 @@
 
       &.checked{
         border-color: @Primary;
-        .v-input-radio-inner{
-          transform: scale3d(1, 1, 1);
-        }
-
         &.disabled{
           border-color: @BorderColor;
         }
@@ -91,8 +90,6 @@
         height: 8/@RootFontSize;
         border-radius: 50%;
         background-color: @Primary;
-        transform: scale3d(0, 0, 0);
-        transition: transform .3s;
 
         &.disabled{
           background-color: @RadioInnerDisabled;
@@ -104,5 +101,15 @@
       margin-left: 2/@RootFontSize;
       vertical-align: middle;
     }
+  }
+
+  .v-radio-ani-enter-active,
+  .v-radio-ani-leave-active{
+    transition: transform .3s;
+  }
+
+  .v-radio-ani-enter,
+  .v-radio-ani-leave-to{
+    transform: scale3d(0, 0, 0)
   }
 </style>
