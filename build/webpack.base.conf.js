@@ -4,7 +4,6 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const urlPublicPath = process.NODE_ENV == 'production' ? '/aaa/vue-ui-mobile/' : '../../'
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -45,10 +44,8 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-          limit: 80000,
-          name: '[name].[hash:7].[ext]',
-          outputPath: 'static/img/',
-          publicPath: urlPublicPath
+          limit: 100,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
@@ -56,9 +53,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[hash:7].[ext]',
-          outputPath: 'static/media/',
-          publicPath: urlPublicPath
+          name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
       {
@@ -66,9 +61,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[hash:7].[ext]',
-          outputPath: 'static/font/',
-          publicPath: urlPublicPath
+          name: utils.assetsPath('font/[name].[hash:7].[ext]')
         }
       }
     ]
