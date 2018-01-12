@@ -36,6 +36,22 @@
           <v-icon type="toggle" size="0.64" color="#FF8D20"></v-icon>
           <div class="com-name">Switch</div>
         </div>
+        <div class="item" @click="$router.push('/keyboard')">
+          <v-icon type="toggle" size="0.64" color="#FF8D20"></v-icon>
+          <div class="com-name">Keyboard</div>
+        </div>
+        <div class="item" @click="$router.push('/keyboard')">
+          <v-icon type="toggle" size="0.64" color="#FF8D20"></v-icon>
+          <div class="com-name">Keyboard</div>
+        </div>
+        <div class="item" @click="$router.push('/keyboard')">
+          <v-icon type="toggle" size="0.64" color="#FF8D20"></v-icon>
+          <div class="com-name">Keyboard</div>
+        </div>
+        <div class="item" @click="$router.push('/keyboard')">
+          <v-icon type="toggle" size="0.64" color="#FF8D20"></v-icon>
+          <div class="com-name">Keyboard</div>
+        </div>
       </div>
     </v-scroll>
   </div>

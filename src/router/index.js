@@ -12,6 +12,7 @@ const MessageView = () => import('../pages/Message')
 const RadioView = () => import('../pages/Radio')
 const CheckboxView = () => import('../pages/Checkbox')
 const SwitchView = () => import('../pages/Switch')
+const KeyBoardView = () => import('../pages/KeyBoard')
 
 Vue.use(Router)
 
@@ -61,6 +62,11 @@ const router = new Router({
       path: '/switch',
       name: 'Switch',
       component: SwitchView
+    },
+    {
+      path: '/keyboard',
+      name: 'KeyBoard',
+      component: KeyBoardView
     }
   ]
 })
