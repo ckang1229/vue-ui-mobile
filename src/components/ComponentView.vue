@@ -2,9 +2,10 @@
   <div class="component">
     <top-bar :title="$route.name"></top-bar>
     <div class="scroll-view">
-      <v-scroll ref="scroll">
+      <v-scroll ref="scroll" v-if="scroll">
         <slot></slot>
       </v-scroll>
+      <slot name="no-scroll" v-else></slot>
     </div>
   </div>
 </template>
@@ -14,9 +15,15 @@
 
   export default {
     name: 'component-view',
+    props: {
+      scroll: {
+        type: Boolean,
+        default: true
+      }
+    },
     mounted(){
       this.$nextTick(() => {
-        this.$refs.scroll.refresh()
+        this.$refs.scroll && this.$refs.scroll.refresh()
       })
     },
     components: {

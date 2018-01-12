@@ -42,9 +42,7 @@
     },
     methods: {
       open (opt = {}) {
-        if('XButton' in opt){
-          this.XButton = opt.XButton
-        }
+        this.XButton = 'XButton' in opt ? opt.XButton : false
 
         if('onKeyClick' in opt){
           this.onKeyClick = opt.onKeyClick
